@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { adicionarDespesa } from "../src/despesas";
+import { adicionarDespesa, removerDespesa } from "../src/despesas";
 import type { Despesa } from "../src/tipos";
 import { exec } from "node:child_process";
 import { execPath } from "node:process";
@@ -72,4 +72,22 @@ describe("adicionarDespesa", () => {
         expect(resultado).toHaveLength(2);
     });
     
+});
+
+
+describe("removerDespesa", () => {
+    it("deve remover uma despesa pelo id", () => {
+        const despesas = [despesa1, despesa2];
+
+        const resultado = removerDespesa(despesas, 1);
+        expect(resultado).toHaveLength(1);
+        expect(resultado[0]).toEqual(despesa2);
+    });
+    it("deve retornar uma cópia quando o id não existir", () => {
+        const despesas = [despesa1, despesa2];
+
+        const resultado = removerDespesa(despesas, 999);
+        expect(resultado).toEqual(despesas);
+        expect(resultado).not.toBe(despesas);
+    });
 });
