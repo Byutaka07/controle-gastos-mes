@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { adicionarDespesa, removerDespesa } from "../src/despesas";
+import { adicionarDespesa, removerDespesa, despesasDaCategoria } from "../src/despesas";
 import type { Despesa } from "../src/tipos";
 import { exec } from "node:child_process";
 import { execPath } from "node:process";
@@ -19,6 +19,14 @@ const despesa2: Despesa = {
     categoria: "transporte",
     mes: 2,
     observacao: "Me atrasei pro trabalho e perdi o fretado"
+}
+
+const despesa3: Despesa = {
+    id: 3,
+    descricao: "Pizza",
+    valor: 50,
+    categoria: "alimentação",
+    mes: 3
 }
 
 describe("adicionarDespesa", () => {
@@ -89,5 +97,23 @@ describe("removerDespesa", () => {
         const resultado = removerDespesa(despesas, 999);
         expect(resultado).toEqual(despesas);
         expect(resultado).not.toBe(despesas);
+    });
+});
+
+describe("despesasDaCategoria", () => {
+    it("deve retornar somente despesas da categoria informada", () => {
+        const despesas = [despesa1, despesa2, despesa3];
+
+        const resultado = despesasDaCategoria(despesas, "alimentação");
+
+        expect(resultado).toHaveLength(2);
+        expect(resultado).toEqual([despesa1, despesa3]);
+    });
+
+    it("deve retornar um array vazio quando não houver despesas da categoria", () => {
+        const despesas = [despesa1, despesa2, despesa3];
+        const resultado = despesasDaCategoria(despesas, "moradia");
+
+        expect(resultado).toEqual([]);
     });
 });
