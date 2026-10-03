@@ -19,5 +19,6 @@ export function removerDespesa(
     despesas: Despesa[],
     id:number
 ): Despesa[] {
-    throw new Error("não implementado");
+    //o filter cria um novo array contendo as despesas que passaram pela condição
+    return despesas.filter((despesa) => despesa.id !==id);
 }
