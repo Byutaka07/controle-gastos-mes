@@ -32,5 +32,11 @@ export function despesasDaCategoria(
 export function totalGasto(
     despesas: Despesa[]
 ): number{
-    throw new Error("não implementado");
+   let total = 0;
+
+    for (const despesa of despesas) {
+    total += despesa.valor;
+    }
+
+    return total;
 }
