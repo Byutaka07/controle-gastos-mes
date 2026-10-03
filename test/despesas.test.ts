@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { adicionarDespesa, removerDespesa, despesasDaCategoria } from "../src/despesas";
+import { adicionarDespesa, removerDespesa, despesasDaCategoria, totalGasto } from "../src/despesas";
 import type { Despesa } from "../src/tipos";
 import { exec } from "node:child_process";
 import { execPath } from "node:process";
@@ -117,3 +117,22 @@ describe("despesasDaCategoria", () => {
         expect(resultado).toEqual([]);
     });
 });
+
+describe("totalGasto", () => {
+    it("deve retornar o total gasto", () => {
+    const despesas = [despesa1, despesa2, despesa3];
+
+    const resultado = totalGasto(despesas);
+
+    expect(resultado).toBe(115);
+    });
+
+    it("deve retornar zero quando a lista estiver vazia", () => {
+    const despesas: Despesa[] = [];
+
+    const resultado = totalGasto(despesas);
+
+    expect(resultado).toBe(0);
+    });
+});
+
