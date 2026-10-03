@@ -1,4 +1,4 @@
-import type { Categoria } from "./tipos";
+import type { Categoria, Despesa } from "./tipos";
 
 export function descricaoCategoria(
     categoria: Categoria
@@ -17,5 +17,11 @@ export function descricaoCategoria(
             return "Moradia";
             
     }
+}
+
+export function matrizCategoriaMes(
+    despesas: Despesa[]
+): number[][]{
+    throw new Error ("não implementado");
 }
 
