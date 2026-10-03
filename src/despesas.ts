@@ -44,5 +44,17 @@ export function totalGasto(
 export function maiorDespesa(
     despesas: Despesa[]
 ): Despesa | undefined{
-    throw new Error ("não implementado");
+        if (despesas.length === 0) {
+            return undefined;
+        }
+
+        let maior = despesas[0]!;
+
+        for (const despesa of despesas) {
+        if (despesa.valor > maior.valor) {
+        maior = despesa;
+        }
+        }
+
+    return maior;
 }
