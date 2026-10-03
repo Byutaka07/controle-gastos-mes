@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { adicionarDespesa, removerDespesa, despesasDaCategoria, totalGasto } from "../src/despesas";
+import { adicionarDespesa, removerDespesa, despesasDaCategoria, totalGasto, maiorDespesa } from "../src/despesas";
 import type { Despesa } from "../src/tipos";
 import { exec } from "node:child_process";
 import { execPath } from "node:process";
@@ -136,3 +136,21 @@ describe("totalGasto", () => {
     });
 });
 
+
+describe("maiorDespesa", () => {
+    it("deve retornar a despesa de maior valor", () => {
+    const despesas = [despesa1, despesa2, despesa3];
+
+    const resultado = maiorDespesa(despesas);
+
+    expect(resultado).toEqual(despesa3);
+    });
+
+    it("deve retornar undefined quando a lista estiver vazia", () => {
+    const despesas: Despesa[] = [];
+    
+    const resultado = maiorDespesa(despesas);
+
+    expect(resultado).toBeUndefined();
+    });
+});
