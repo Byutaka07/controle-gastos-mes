@@ -77,8 +77,7 @@ aceitei ou ajustei o código.
 ## Reflexão sobre o uso de IA
 
 A IA ajudou principalmente na implementação das funções depois que os testes já estavam escritos e commitados. 
-Foi importante revisar o código gerado em vez de aceitar diretamente todas as sugestões. Pois consegui compreender o que estava
-acontecendo no código, o por que ele foi escrito assim e como isso ia impactar no meu projeto.
+Foi importante revisar o código gerado em vez de aceitar diretamente todas as sugestões. Pois consegui compreender o que estava acontecendo no código, o por que ele foi escrito assim e como isso ia impactar no meu projeto.
 Na função `maiorDespesa`, foi necessário ajustar o acesso ao primeiro elemento do array por causa da opção `noUncheckedIndexedAccess` do TypeScript.
 Na função `matrizCategoriaMes`, também foi necessário tratar possíveis valores `undefined` ao acessar linhas e colunas da matriz.
 Os testes ajudaram a verificar se as implementações realmente atendiam o que se esperava do código.
