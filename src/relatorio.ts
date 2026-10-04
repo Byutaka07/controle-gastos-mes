@@ -1,4 +1,6 @@
 import type { Categoria, Despesa } from "./tipos";
+import { CATEGORIAS } from "./tipos";
+import { totalGasto, maiorDespesa } from "./despesas";
 
 export function descricaoCategoria(
     categoria: Categoria
@@ -72,6 +74,48 @@ export function matrizCategoriaMes(
 export function formatarRelatorio(
     despesas: Despesa[]
 ): string{
-    throw new Error("não implementado");
-}
+    const matriz = matrizCategoriaMes(despesas);
+
+    let relatorio = "Relatório de gastos".toUpperCase() + "\n\n";
+
+    for (let i = 0; i < CATEGORIAS.length; i++) {
+        let totalCategoria = 0;
+        const linha = matriz[i];
+
+        if (linha !== undefined) {
+            for (let mes = 0; mes < 12; mes++) {
+                const valor = linha[mes];
+
+                if (valor !== undefined) {
+                    totalCategoria += valor;
+            }
+        }
+    }
+
+    const categoria = CATEGORIAS[i];
+
+    if (categoria !== undefined) {
+        const nome = descricaoCategoria(categoria);
+        relatorio += nome.padEnd(15) + totalCategoria.toFixed(2) + "\n";
+        }
+    }
+
+    const total = totalGasto(despesas);
+    const maior = maiorDespesa(despesas);
+
+    relatorio += "\n" + "Total geral:".padEnd(15) + total.toFixed(2) + "\n";
+
+    if (maior !== undefined) {
+        relatorio +=
+        "Maior despesa: " +
+        maior.descricao +
+        " - " +
+        maior.valor.toFixed(2);
+    } else {
+        relatorio += "Maior despesa: nenhuma";
+    }
+
+    return relatorio;
+    }
+
 
